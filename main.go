@@ -16,6 +16,7 @@ func main() {
 
 }
 
+// Generates a board with zero valued elements of a specified width and height
 func deadState(width, height int) [][]int {
 
 	// Creates board which is a slice containing height number of slices
@@ -40,6 +41,7 @@ func deadState(width, height int) [][]int {
 	return board
 }
 
+// Generates a random state for each cell in board which is passed
 func randomState(width, height int) [][]int {
 
 	// Uses previous function to create a board which is zero entried
@@ -64,20 +66,25 @@ func randomState(width, height int) [][]int {
 	return board
 }
 
+// Prints the board state to terminal
 func render(board [][]int) {
 
-	// Loops through each row and creates a new slice of strings. Each
-	// element is then checked to see if it is 'alive' or 'dead'
+	// TODO fix top and bottom border to always be the length of the rows
+
+	// Loops through board and prints a hash for alive cells otherwise prints white
+	// space
+
+	fmt.Println("+----------------+")
 	for _, row := range board {
-		renderRow := make([]string, len(row))
-		for index, state := range row {
+		fmt.Print("| ")
+		for _, state := range row {
 			if state == 1 {
-				renderRow[index] = "#"
+				fmt.Print("# ")
 			} else {
-				renderRow[index] = " "
+				fmt.Print("  ")
 			}
 		}
-		fmt.Println(renderRow)
+		fmt.Println(" |")
 	}
-
+	fmt.Println("+----------------+")
 }
